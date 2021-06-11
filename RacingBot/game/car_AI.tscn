@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://game/assets/car_blue_3.png" type="Texture" id=1]
+[ext_resource path="res://game/car_AI.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 29.508
+height = 70.5896
+
+[node name="car_AI" type="Sprite"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 16
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="RayCast_left" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -1500, -5000 )
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCast_left2" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -3000, -5000 )
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCast_right" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 1500, -5000 )
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCast_right2" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 3000, -5000 )
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCast_mid" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, -5000 )
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
